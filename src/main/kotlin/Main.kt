@@ -1,14 +1,15 @@
 import java.lang.IllegalArgumentException
 
 fun main() {
-    val person = Person("HI")
-    print(person.age)
+    val person = Person("HIfda", 30)
+    print(person.isAdult)
+    print(person.name)
 }
 
 class Person(
     // 주 생성자
-    val name: String,
-    var age: Int
+    name: String = "HELLO!",
+    var age: Int = 1,
 ) {
     // 생성자가 호출되는 시점
     init {
@@ -17,7 +18,19 @@ class Person(
         }
     }
 
-    constructor(name: String) : this(name, 1)
+    // 메소드형
+//    fun isAdult(): Boolean {
+//        return this.age >= 20
+//    }
+
+    // property화
+    val isAdult: Boolean
+        // Custome Getter
+        get() = this.age >= 20
+
+    // field는 자기 자신 this와 같음 name을 언급할 때, getter를 이용하는데 get()이 getter이니 무한 루프 생김, field가 억제
+    val name: String = name
+        get() = field.uppercase()
 }
 
 fun max(a: Int, b: Int) = if (a > b) a else b
