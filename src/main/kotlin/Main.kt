@@ -1,11 +1,12 @@
 import java.lang.IllegalArgumentException
 
 fun main() {
-    val person = Person("HI", -5)
-    print(person.name)
+    val person = Person("HI")
+    print(person.age)
 }
 
 class Person(
+    // 주 생성자
     val name: String,
     var age: Int
 ) {
@@ -15,6 +16,8 @@ class Person(
             throw IllegalArgumentException("나이는 ${age}일 수 없습니다.")
         }
     }
+
+    constructor(name: String) : this(name, 1)
 }
 
 fun max(a: Int, b: Int) = if (a > b) a else b
